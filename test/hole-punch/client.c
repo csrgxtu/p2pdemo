@@ -173,19 +173,19 @@ int main(int argc, char **argv) {
             } else if (recvret < 0) {
                 fprintf(stderr, "Error on recvfrom.  errno %d\n", errno);
                 return 9;
-            } else if (recvret != sizeof(hello_buf)) {
+            }/* else if (recvret != sizeof(hello_buf)) {
                 printf("Debug: recvret %d\thello_buf %d\n", recvret, sizeof(hello_buf));
                 fprintf(stderr, "Unexpected message size: %u\n", len);
                 return 9;
-            }
+            }*/
 
             remote_set = 1;
-            printf("Received '%u'\n", ntohl(hello_buf));
+            printf("Received '%s'\n", hello_buf);
         } else {
             /* Send the current iteration number */
             assert(remote_set);
             //uint32_t pass_buf = htonl((uint32_t) iter / 2);
-            char *hello_buf = "hello";
+            char hello_buf[5] = "hello";
             printf("Debug send hello_buf %s\n", hello_buf);
             printf("Debug send hello_buf size %d\n", sizeof(hello_buf));
 

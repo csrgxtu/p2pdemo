@@ -164,7 +164,7 @@ int main(int argc, char **argv) {
             /*recvret = recvfrom(fd, &pass_buf, sizeof(pass_buf), MSG_TRUNC,
                 remote_set ? NULL : &remote,
                 remote_set ? NULL : &len);*/
-            recvret = recvfrom(fd, &hello_buf, sizeof(hello_buf), MSG_TRUNC,
+            recvret = recvfrom(fd, &hello_buf, 8, MSG_TRUNC,
                 remote_set ? NULL : &remote,
                 remote_set ? NULL : &len);
             printf("Debug: hello_buf size: %d", sizeof(hello_buf));

@@ -152,7 +152,7 @@ int main(int argc, char **argv) {
     for ( ; iter < real_passes; iter++) {
         if (iter % 2 == 0) {
             //uint32_t pass_buf;
-            char *hello_buf;
+            char hello_buf[] = "whate";
             /* Keep Valgrind happy */
             //pass_buf = 0;
 

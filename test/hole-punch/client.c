@@ -174,7 +174,7 @@ int main(int argc, char **argv) {
                 fprintf(stderr, "Error on recvfrom.  errno %d\n", errno);
                 return 9;
             } else if (recvret != sizeof(hello_buf)) {
-                printf("Debug: recvret %d\thello_buf %d\n", recvret, sizeof(hello_buf));
+                printf("Debug: recvret %d\thello_buf %d\n", (int)recvret, (int)sizeof(hello_buf));
                 fprintf(stderr, "Unexpected message size: %u\n", len);
                 return 9;
             }

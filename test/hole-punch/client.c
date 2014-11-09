@@ -180,14 +180,14 @@ int main(int argc, char **argv) {
             }
 
             remote_set = 1;
-            printf("Received '%s'\n", hello_buf);
+            //printf("Received '%s'\n", hello_buf);
         } else {
             /* Send the current iteration number */
             assert(remote_set);
             //uint32_t pass_buf = htonl((uint32_t) iter / 2);
             char hello_buf[] = "hello";
             printf("Debug send hello_buf %s\n", hello_buf);
-            printf("Debug send hello_buf size %lu\n", sizeof(hello_buf));
+            printf("Debug send hello_buf size %d\n",(int)sizeof(hello_buf));
 
             //sendret = sendto(fd, &pass_buf, sizeof(pass_buf), 0, &remote,
             //    sizeof(remote));

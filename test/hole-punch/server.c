@@ -103,6 +103,7 @@ int main(int argc, char **argv) {
         // Reply with what we know.
         ssize_t sendret = sendto(fd, buf, sizeof(buf), 0, &next_data,
             sizeof(next_data));
+        printf("Debug Reply: %s\n", buf);
         if (sendret < 0) {
             fprintf(stderr, "Error on sendto.  errno %d\n", errno);
             return 6;

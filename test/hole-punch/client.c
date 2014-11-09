@@ -151,38 +151,46 @@ int main(int argc, char **argv) {
 
     for ( ; iter < real_passes; iter++) {
         if (iter % 2 == 0) {
-            uint32_t pass_buf;
+            //uint32_t pass_buf;
+            char *hello_buf;
             /* Keep Valgrind happy */
-            pass_buf = 0;
+            //pass_buf = 0;
 
             socklen_t len   = sizeof(remote);
             /**
              * If we do not have the remote client information yet, note it
              * when the client receives a packet.
              */
-            recvret = recvfrom(fd, &pass_buf, sizeof(pass_buf), MSG_TRUNC,
+            /*recvret = recvfrom(fd, &pass_buf, sizeof(pass_buf), MSG_TRUNC,
+                remote_set ? NULL : &remote,
+                remote_set ? NULL : &len);*/
+            recvret = recvfrom(fd, &hello_buf, sizeof(hello_buf), MSG_TRUNC,
                 remote_set ? NULL : &remote,
                 remote_set ? NULL : &len);
+            printf("Debug: hello_buf size: %d", sizeof(hello_buf));
             if (sizeof(remote) < len) {
                 fprintf(stderr, "Unsufficent buffer space for address.\n");
                 return 9;
             } else if (recvret < 0) {
                 fprintf(stderr, "Error on recvfrom.  errno %d\n", errno);
                 return 9;
-            } else if (recvret != sizeof(pass_buf)) {
+            } else if (recvret != sizeof(hello_buf)) {
                 fprintf(stderr, "Unexpected message size: %u\n", len);
                 return 9;
             }
 
             remote_set = 1;
-            printf("Received '%u'\n", ntohl(pass_buf));
+            printf("Received '%u'\n", ntohl(hello_buf));
         } else {
             /* Send the current iteration number */
             assert(remote_set);
-            uint32_t pass_buf = htonl((uint32_t) iter / 2);
+            //uint32_t pass_buf = htonl((uint32_t) iter / 2);
+            char *hello_buf = "hello"; 
 
-            sendret = sendto(fd, &pass_buf, sizeof(pass_buf), 0, &remote,
-                sizeof(remote));
+            //sendret = sendto(fd, &pass_buf, sizeof(pass_buf), 0, &remote,
+            //    sizeof(remote));
+            sendret = sendto(fd, &hello_buf, sizeof(hello_buf), 0, &remote,
+                  sizeof(remote));
             if (sendret < 0) {
                 fprintf(stderr, "Error on sendto. errno %d\n", errno);
                 return 10;

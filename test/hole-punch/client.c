@@ -168,6 +168,7 @@ int main(int argc, char **argv) {
                 remote_set ? NULL : &remote,
                 remote_set ? NULL : &len);
             printf("Debug: hello_buf size: %d", sizeof(hello_buf));
+            printf("Debug: hello_buf: %s", hello_buf);
             if (sizeof(remote) < len) {
                 fprintf(stderr, "Unsufficent buffer space for address.\n");
                 return 9;

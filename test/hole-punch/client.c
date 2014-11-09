@@ -164,7 +164,7 @@ int main(int argc, char **argv) {
             /*recvret = recvfrom(fd, &pass_buf, sizeof(pass_buf), MSG_TRUNC,
                 remote_set ? NULL : &remote,
                 remote_set ? NULL : &len);*/
-            recvret = recvfrom(fd, &hello_buf, 8, MSG_TRUNC,
+            recvret = recvfrom(fd, &hello_buf, 6, MSG_TRUNC,
                 remote_set ? NULL : &remote,
                 remote_set ? NULL : &len);
             if (sizeof(remote) < len) {
@@ -187,11 +187,11 @@ int main(int argc, char **argv) {
             //uint32_t pass_buf = htonl((uint32_t) iter / 2);
             char hello_buf[] = "hello";
             printf("Debug send hello_buf %s\n", hello_buf);
-            printf("Debug send hello_buf size %ud\n", sizeof(hello_buf));
+            printf("Debug send hello_buf size %u\n", sizeof(hello_buf));
 
             //sendret = sendto(fd, &pass_buf, sizeof(pass_buf), 0, &remote,
             //    sizeof(remote));
-            sendret = sendto(fd, &hello_buf, sizeof(hello_buf), 0, &remote,
+            sendret = sendto(fd, hello_buf, sizeof(hello_buf), 0, &remote,
                   sizeof(remote));
             if (sendret < 0) {
                 fprintf(stderr, "Error on sendto. errno %d\n", errno);

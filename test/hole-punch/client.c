@@ -180,7 +180,7 @@ int main(int argc, char **argv) {
             }
 
             remote_set = 1;
-            //printf("Received '%s'\n", hello_buf);
+            printf("Received '%s'\n", hello_buf);
         } else {
             /* Send the current iteration number */
             assert(remote_set);

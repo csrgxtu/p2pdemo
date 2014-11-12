@@ -98,6 +98,8 @@ int main(int argc, char **argv) {
         if (recvret < 0) {
             fprintf(stderr, "Error on recvfrom.  errno %d\n", errno);
             return 3;
+        } else {
+            fprintf(stdin, "Received connections from client...");
         }
 
         // Reply with what we know.
